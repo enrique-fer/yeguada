@@ -6,6 +6,7 @@ import history from '../../history';
 import Home from '../home/home';
 import MainHeader from '../headernavbar/main-header';
 import SkewedHeader from '../headernavbar/skewed-header';
+import Footer from '../footer/footer';
 
 class Layout extends Component {
     constructor() {
@@ -59,21 +60,21 @@ class Layout extends Component {
     render() {
         return (
             <div className="layout">
-               {
-                    this.state.isMainPage ? 
-                    <MainHeader checkMainPage={this.checkMainPage} /> : 
-                    <SkewedHeader checkMainPage={this.checkMainPage} headerInfo={this.state.skHeader} />
-                }
+              {
+                  this.state.isMainPage ? 
+                  <MainHeader checkMainPage={this.checkMainPage} /> : 
+                  <SkewedHeader checkMainPage={this.checkMainPage} headerInfo={this.state.skHeader} />
+              }
 
-                <Router history={history}>
-                    <Switch>
-                        <Route path='/' exact component={Home} />
+              <Router history={history}>
+                  <Switch>
+                      <Route path='/' exact component={Home} />
 
-                        {/* Other routes */}
-                    </Switch>
-                </Router>
+                      {/* Other routes */}
+                  </Switch>
+              </Router>
 
-                {/* Footer */}
+              <Footer />
             </div>
         );
     }

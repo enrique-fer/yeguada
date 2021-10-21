@@ -23,11 +23,13 @@ body {
 
 @import './layout.scss';
 
-@import './home/features.scss';
-@import './home/home.scss';
-@import './home/place.scss';
-
 @import './headernavbar/header.scss';
 @import './headernavbar/menu-nav.scss';
 @import './headernavbar/skewedheader.scss';
 @import './headernavbar/pageTitle.scss';
+
+@import './footer/footer.scss';
+
+@import './home/features.scss';
+@import './home/home.scss';
+@import './home/place.scss';
