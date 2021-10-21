@@ -1,0 +1,61 @@
+.home {
+    grid-row: content-s/content-e;
+    grid-column: s/e;
+
+    display: grid;
+    grid-template-rows: [place-s] 400px [place-e features-s] 550px [features-e map-s] 450px [map-e];
+    grid-template-columns: [s] 1fr [e];
+
+    &__place,
+    &__features {
+        padding: 100px;
+    }
+
+    &__place {
+        grid-row: place-s/place-e;
+        grid-column: s/e;
+    }
+
+    &__features {
+        grid-row: features-s/features-e;
+        grid-column: s/e;
+    }
+
+    &__map {
+        grid-row: map-s/map-e;
+        grid-column: s/e;
+    }
+}
+
+.location {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 50%));
+
+    &__data {
+        display: grid;
+        grid-template-rows: [s] 1fr [e];
+        grid-template-columns: [icon-s] 1fr [icon-e location-s] 2fr [location-e];
+        box-shadow: inset 0px 0px 99px -30px rgba(0,0,0,1);
+    
+        &__icon {
+            grid-row: s/e;
+            grid-column: icon-s/icon-e;
+            align-self: center;
+        }
+
+        &__icon i {
+            float: right;
+            font-size: 4em;
+            color: #cea135;
+        }
+
+        &__info {
+            grid-row: s/e;
+            grid-column: location-s/location-e;
+            align-self: center;
+            font-size: 1.5em;
+            font-weight: 600;
+            transform: translateX(100px);
+        }
+    }
+}
