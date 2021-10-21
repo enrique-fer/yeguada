@@ -1,0 +1,6 @@
+//NAVBAR
+export const SET_NAVBAR_LINKS = 'SET_NAVBAR_LINKS';
+export const SET_LINKS = 'SET_LINKS';
+
+//HOME
+export const SET_FEATURES_CARDS = 'SET_FEATURES_CARDS';
