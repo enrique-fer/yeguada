@@ -11,6 +11,7 @@ import Footer from '../footer/footer';
 import Yeguada from '../yeguada/yeguada';
 import Info from '../infoshop/info';
 import Shop from '../infoshop/shop';
+import Contacto from '../contacto/contacto';
 
 class Layout extends Component {
     constructor() {
@@ -87,6 +88,7 @@ class Layout extends Component {
                     <Route path='/shop'>
                         <Shop loadHeaderImage={this.loadHeaderImage} />
                     </Route>
+                    <Route path='/contacto' component={Contacto} />
                     {/* Other routes */}
                 </Switch>
             </Router>
