@@ -8,6 +8,8 @@ import MainHeader from '../headernavbar/main-header';
 import SkewedHeader from '../headernavbar/skewed-header';
 import Footer from '../footer/footer';
 
+import Yeguada from '../yeguada/yeguada';
+
 class Layout extends Component {
     constructor() {
         super();
@@ -69,7 +71,7 @@ class Layout extends Component {
               <Router history={history}>
                   <Switch>
                       <Route path='/' exact component={Home} />
-
+                      <Route path='/yeguada' component={Yeguada} />
                       {/* Other routes */}
                   </Switch>
               </Router>

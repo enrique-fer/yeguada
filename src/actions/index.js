@@ -7,9 +7,19 @@ import {
     setFeaturesCards
 } from './home';
 
+import {
+    setHorses,
+    setHorsesContent,
+    changeActiveContent
+} from './yeguada';
+
 export {
     setNavbarLinks,
     setLinks,
 
-    setFeaturesCards
+    setFeaturesCards,
+
+    setHorses,
+    setHorsesContent,
+    changeActiveContent
 }
