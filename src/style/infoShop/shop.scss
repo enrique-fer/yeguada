@@ -1,0 +1,52 @@
+.shop {
+    grid-row: content-s/content-e;
+    grid-column: s/e;
+
+    display: grid;
+    grid-template-columns: [s] 1fr [e];
+    grid-template-rows: [titulo-s] 100px [titulo-e cal-s] 1fr [cal-e] 50px;
+}
+
+.title {
+    grid-row: titulo-s/titulo-e;
+    grid-column: s/e;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2em;
+}
+
+.fecha {
+    grid-row: cal-s/cal-e;
+    grid-column: s/e;
+    
+
+    display: grid;
+    grid-template-columns: [calendario-s] 1fr [calendario-e] 50px [date-s] 1fr [date-e];
+    grid-template-rows: [button-s] 50px [button-e content-s] 1fr [content-e];
+}
+
+.calBtn {
+    grid-column: 1/-1;
+    grid-row: button-s/button-e;
+}
+
+.calendario {
+    grid-column: calendario-s/calendario-e;
+    grid-row: content-s/content-e;
+
+    opacity: 0;
+}
+
+.texto {
+    grid-column: date-s/date-e;
+    grid-row: content-s/content-e;
+
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
