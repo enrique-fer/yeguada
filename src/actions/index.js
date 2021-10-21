@@ -13,6 +13,11 @@ import {
     changeActiveContent
 } from './yeguada';
 
+import {
+    fetchDates,
+    addDate
+} from './shop'
+
 export {
     setNavbarLinks,
     setLinks,
@@ -21,5 +26,8 @@ export {
 
     setHorses,
     setHorsesContent,
-    changeActiveContent
+    changeActiveContent,
+
+    fetchDates,
+    addDate
 }

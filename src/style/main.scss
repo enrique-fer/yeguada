@@ -40,3 +40,8 @@ body {
 
 @import './infoShop/info.scss';
 @import './infoShop/shop.scss';
+
+@import '../../node_modules/react-calendar/dist/Calendar.css';
+@import './infoShop/calendario.scss';
+
+@import './forms/btns.scss';

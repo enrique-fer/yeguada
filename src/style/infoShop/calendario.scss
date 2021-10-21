@@ -1,0 +1,19 @@
+.day-red {
+    padding: 5px;
+    background-color: rgba(201, 20, 20, 0.55);
+}
+
+.react-calendar {
+    width: 35%;
+    font-size: 1.2rem;
+
+    &__navigation {
+        & > * {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__tile {
+        font-size: 1.3rem;
+    }
+}
