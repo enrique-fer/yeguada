@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Global from '../../Global';
 
 class ImageSlider extends Component  {
     constructor(props) {
@@ -30,7 +30,7 @@ class ImageSlider extends Component  {
 
     render() {
         const { className, handleClick } = this.props;
-        console.log(this.props);
+
         const prev = this.state.current === 0 ? this.state.length - 1 : this.state.current - 1;
         const next = this.state.current === this.state.length - 1 ? 0 : this.state.current + 1;
 
@@ -73,7 +73,11 @@ function mapSliderData(sliderData, imgIndex, type, handleClick) {
                                         <h1 className="slide__title">{slide.title}</h1> :
                                         ''
                                 }
-                                <img className={`slide__${type}image`} src={slide.image} />
+                                {
+                                    slide.image ? 
+                                        <img className={`slide__${type}image`} src={`${Global.url}caballo/get-image/${slide.image}`} alt={slide.title} /> :
+                                        <img className={`slide__${type}image`} src={`http://via.placeholder.com/800x480`} alt={slide.title} title="No hay foto para el caballo" />
+                                }
                             </div>
                         )
                     }

@@ -49,24 +49,13 @@ class Layout extends Component {
     }
     
     checkMainPage(link) {
-      if ((!this.state.isMainPage && link.path === '/') ||
-          (this.state.isMainPage && link.path === '/')){
-        this.setState({
-          isMainPage: true,
-          skHeader: {
-            title: "",
-            bg_image: null
-          }
-        });
-      } else {
-        this.setState({
-          isMainPage: false,
-          skHeader: {
-            title: link.title,
-            bg_image: link.bg_image
-          }
-        });
-      }
+      this.setState({
+        isMainPage: link.isMainPage,
+        skHeader: {
+          title: link.title,
+          bg_image: link.bg_image
+        }
+      });
     }
 
     render() {
@@ -85,7 +74,7 @@ class Layout extends Component {
                     <Route path='/info'>
                       <Info loadHeaderImage={this.loadHeaderImage} />
                     </Route>
-                    <Route path='/shop'>
+                    <Route path='/reserva'>
                         <Shop loadHeaderImage={this.loadHeaderImage} />
                     </Route>
                     <Route path='/contacto' component={Contacto} />

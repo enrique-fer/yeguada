@@ -11,7 +11,7 @@ class SquareCard extends Component {
         return (    
             card._id % 2 === 0 ? (
                 <Link to={{
-                    pathname: '/shop', 
+                    pathname: '/reserva', 
                     state: {id: card._id}
                  }} className={`${className} square-card`} key={card._id} >
                     <div className="square-card__image">

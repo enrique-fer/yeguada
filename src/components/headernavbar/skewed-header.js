@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 
 import Navbar from './navbar';
 import PageTitle from './pageTitle';
+import Global from '../../Global';
 
 class SkewedHeader extends Component {
+    url = Global.url;
+
     constructor(props) {
         super(props);
     }
@@ -13,7 +16,7 @@ class SkewedHeader extends Component {
 
         return (
             <div className="skewed-header">  
-                <div className="skewed-header__bg" style={{backgroundImage: `url("${headerInfo.bg_image}")`}}/>
+                <div className="skewed-header__bg" style={{backgroundImage: `url("${Global.url}cabecera/get-image/${headerInfo.bg_image}")`}}/>
 
                 <div className="skewed-header__content">
                     <div className="content">

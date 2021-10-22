@@ -48,8 +48,6 @@ class Shop extends Component {
     }
 
     onChange(value) {
-        console.log(value.getDate());
-        console.log(new Date(`${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`));
         this.setState({
             date: value
         })

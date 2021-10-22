@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
+import Global from '../../Global';
 
 export class Caballo extends Component {
+    url = Global.url;
+
     constructor() {
         super();
     }
@@ -12,7 +15,11 @@ export class Caballo extends Component {
         return (
             <div className={`${className} caballo`}>
                 <div className="caballo__image">
-                    <img src={horse.image} />
+                {
+                    horse.image ? 
+                        <img src={`${Global.url}caballo/get-image/${horse.image}`} alt={horse.title} /> :
+                        <img src={`http://via.placeholder.com/700x466`} alt={horse.title} title="No hay foto para el caballo" />
+                }
                 </div>
 
                 <div className="caballo__info">

@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import axios from 'axios';
 
 import Layout from './layout/layout';
-
-import horseBg from '../../static/assets/images/backgrounds/horse-bg.jpg';
-import leafs from '../../static/assets/images/backgrounds/leafs-bg.jpg';
-import dotHorse from '../../static/assets/images/backgrounds/dot-horse-bg.jpg';
-import tree from '../../static/assets/images/backgrounds/tree2-bg.jpg';
+import Global from '../Global';
 
 import horseRiding from '../../static/assets/images/squares/horseRiding-sq.jpg';
 import littleHorse from '../../static/assets/images/squares/littleHorse-sq.jpg';
@@ -15,80 +12,23 @@ import smallHorse from '../../static/assets/images/squares/smallHorse-sq.jpg';
 import teachingHorseRiding from '../../static/assets/images/squares/teachingHorseRiding-sq.jpg';
 
 class App extends Component {
+    url = Global.url;
     constructor(props) {
         super(props);
     }
 
   componentDidMount() {
-    const navbarLinks = [
-        {
-            _id: 0,
-            title: 'Inicio',
-            path: '/'
-        },
-        {
-            _id: 1,
-            title: 'Yeguada',
-            path: '/yeguada',
-            bg_image: horseBg
-        },
-        {
-            _id: 2,
-            title: 'Información',
-            path: '/info',
-            bg_image: leafs
-        },
-        {
-            _id: 3,
-            title: 'Contacto',
-            path: '/contacto',
-            bg_image: dotHorse
-        },
-        {
-            _id: 4,
-            title: 'Sign in',
-            path: '/signin',
-            bg_image: tree
-        }
-    ];
+    axios.get(`${this.url}cabecera`)
+        .then(res => {
+            var cabeceras = res.data.cabeceras;
+            this.props.setLinks(cabeceras);
 
-    const headers = [
-      {
-          _id: 0,
-          title: 'Inicio',
-          path: '/'
-      },
-      {
-          _id: 1,
-          title: 'Yeguada',
-          path: '/yeguada',
-          bg_image: horseBg
-      },
-      {
-          _id: 2,
-          title: 'Información',
-          path: '/info',
-          bg_image: leafs
-      },
-      {
-          _id: 3,
-          title: 'Contacto',
-          path: '/contacto',
-          bg_image: dotHorse
-      },
-      {
-          _id: 4,
-          title: 'Sign in',
-          path: '/signin',
-          bg_image: tree
-      },
-      {
-          _id: 5,
-          title: 'Reserva',
-          path: '/shop',
-          bg_image: tree
-      }
-    ];
+            var links = cabeceras.slice(0, 5);
+            this.props.setNavbarLinks(links);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 
     const featuresCards = [
       {
@@ -149,8 +89,6 @@ class App extends Component {
     ];
 
     this.props.setFeaturesCards(featuresCards);
-    this.props.setNavbarLinks(navbarLinks);
-    this.props.setLinks(headers);
   }
 
   render() {

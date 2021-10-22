@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import axios from 'axios';
+
+import Global from '../../Global';
+
 import ImageSlider from './imageSlider';
 import Caballo from './caballo';
 
-import enigma from '../../../static/assets/images/horses/Enigma.jpg';
-import oxi from '../../../static/assets/images/horses/Oxi.jpg';
-import jaharany from '../../../static/assets/images/horses/Jaharany.jpg';
-import furia from '../../../static/assets/images/horses/Furia.jpg';
-
 class Yeguada extends Component {
+    url = Global.url;
+
     constructor() {
         super();
 
@@ -22,72 +23,28 @@ class Yeguada extends Component {
     }
 
     componentDidMount() {
-        const horses = [
-            {
-                _id: 0,
-                title: "Enigma",
-                info :{
-                    raza: "Pura Raza Árabe",
-                    edad: 12,
-                    color: "Negro",
-                    padre: "Basir",
-                    madre: "Sarsiura"
-                },
-                image: enigma
-            },
-            {
-                _id: 1,
-                title: "Oxi",
-                info :{
-                    raza: "Pura Raza Árabe",
-                    edad: 12,
-                    color: "Negro",
-                    padre: "Basir",
-                    madre: "Sarsiura"
-                },
-                image: oxi
-            },
-            {
-                _id: 2,
-                title: "Jaharany",
-                info :{
-                    raza: "Pura Raza Árabe",
-                    edad: 12,
-                    color: "Negro",
-                    padre: "Basir",
-                    madre: "Sarsiura"
-                },
-                image: jaharany
-            },
-            {
-                _id: 3,
-                title: "Furia",
-                info :{
-                    raza: "Pura Raza Árabe",
-                    edad: 12,
-                    color: "Negro",
-                    padre: "Basir",
-                    madre: "Sarsiura"
-                },
-                image: furia
-            }
-        ];
+        axios.get(`${this.url}caballo`)
+            .then(res => {
+                const horses = res.data.caballos;
+                const content = [
+                    {
+                        _id: 0,
+                        active: true,
+                        component: <ImageSlider className="yeguada__slider" sliderData={horses} handleClick={this.handleClick} />
+                    },
+                    {
+                        _id: 1,
+                        active: false,
+                        component: <Caballo className="yeguada__caballo" handleClick={this.handleClick} />
+                    }
+                ];
 
-        const content = [
-            {
-                _id: 0,
-                active: true,
-                component: <ImageSlider className="yeguada__slider" sliderData={horses} handleClick={this.handleClick} />
-            },
-            {
-                _id: 1,
-                active: false,
-                component: <Caballo className="yeguada__caballo" handleClick={this.handleClick} />
-            }
-        ];
-
-        this.props.setHorses(horses);
-        this.props.setHorsesContent(content);
+                this.props.setHorses(horses);
+                this.props.setHorsesContent(content);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     handleClick = (horse) => {
@@ -118,7 +75,7 @@ class Yeguada extends Component {
         return (
             <div className="yeguada">
                 {
-                    this.renderContent()
+                    this.renderContent() 
                 }
             </div>
         );
