@@ -82,7 +82,7 @@ class Layout extends Component {
                 </Switch>
             </Router>
 
-            <Footer />
+            <Footer checkMainPage={this.checkMainPage}/>
           </div>
       );
     }

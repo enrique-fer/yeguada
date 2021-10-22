@@ -17,6 +17,10 @@ class Contacto extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentDidMount() {
+        window.scroll({top: 0});
+    }
+
     onChange(event) {
         this.setState({
             ...this.state,

@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 import Place from './place';
 import Features from './features';
+import Global from '../../Global';
 
 class Home extends Component {
-    constructor() {
-        super();
+    url = Global.url;
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        window.scroll({top: 0});
+        axios.get(`${this.url}actividad`)
+            .then(res => {
+                var features = res.data.actividades;
+                this.props.setFeaturesCards(features);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     render() {
@@ -34,5 +52,7 @@ class Home extends Component {
         );
     }
 }
-            
+
+Home = connect(null, actions)(Home);
+
 export default Home;

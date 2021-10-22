@@ -17,7 +17,7 @@ class Features extends Component {
                     {
                         this.props.featuresCards.map(card => {
                             return (
-                                <Link to={`/info#${card.title}`} className="feature__column column" key={card._id}>
+                                <Link to='/info' className="feature__column column" key={card._id}>
                                     <i className={`${card.icon} column__icon`}></i>
                 
                                     <div className="column__title">

@@ -2,49 +2,63 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { withRouter } from 'react-router';
+import axios from 'axios';
+import Global from '../../Global';
 
 import Calendar from 'react-calendar';
 
 class Shop extends Component {
+    url = Global.url;
+
     constructor(props) {
         super(props);
 
         this.state = {
-            item: {},
+            item: {
+            },
             date: new Date(),
         }
 
         this.onChange = this.onChange.bind(this);
-        this.loadData = this.loadData.bind(this);
         this.onClick = this.onClick.bind(this);
     }
 
     componentDidMount() {
-        const { id } = this.props.location.state;
-        const item = this.props.featuresCards.find(item => item._id === (id ? id : 0));
+        window.scroll({top: 0});
+        if (this.props.featuresCards.length === 0) {
+            axios.get(`${this.url}actividad`)
+            .then(res => {
+                var features = res.data.actividades;
+                this.props.setFeaturesCards(features);
 
-        this.props.loadHeaderImage(this.props.headers, window.location.pathname);
-        this.props.fetchDates();
-        this.setState({
-            item
-        });
-    }
+                const { id } = this.props.location.state;
+                const item = features.find(item => item._id === (id ? id : 0));
 
-    loadData(props, state) {
-        const { id } = props.location.state;
-        const item = props.featuresCards.find(item => item._id === (id ? id : 0));
+                this.props.loadHeaderImage(this.props.headers, window.location.pathname);
+                this.props.fetchDates();
 
-        this.props.loadHeaderImage(props.headers, window.location.pathname);
+                if(item != null) {
+                    this.setState({
+                        item
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        } else {
+            const { id } = this.props.location.state;
+            const item = this.props.featuresCards.find(item => item._id === (id ? id : 0));
 
-        state.item = item;
-    }
+            this.props.loadHeaderImage(this.props.headers, window.location.pathname);
+            this.props.fetchDates();
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.item != nextState.item) {
-            this.loadData(nextProps, nextState);
+            if(item != null) {
+                this.setState({
+                    item
+                });
+            }
         }
-
-        return true;
     }
 
     onChange(value) {

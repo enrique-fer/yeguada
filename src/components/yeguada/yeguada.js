@@ -23,6 +23,7 @@ class Yeguada extends Component {
     }
 
     componentDidMount() {
+        window.scroll({top: 0});
         axios.get(`${this.url}caballo`)
             .then(res => {
                 const horses = res.data.caballos;
