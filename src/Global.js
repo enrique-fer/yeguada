@@ -1,5 +1,5 @@
 var Global = {
-    url: 'http://localhost:3900/api/'
+    url: 'https://yeguada-api.herokuapp.com/api/'
 }
 
 export default Global;
