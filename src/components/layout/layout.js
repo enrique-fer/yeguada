@@ -78,7 +78,6 @@ class Layout extends Component {
                         <Shop loadHeaderImage={this.loadHeaderImage} />
                     </Route>
                     <Route path='/contacto' component={Contacto} />
-                    {/* Other routes */}
                 </Switch>
             </Router>
 

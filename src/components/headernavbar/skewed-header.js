@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Navbar from './navbar';
 import PageTitle from './pageTitle';
 import Global from '../../Global';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 
 class SkewedHeader extends Component {
     url = Global.url;
@@ -16,7 +17,7 @@ class SkewedHeader extends Component {
 
         return (
             <div className="skewed-header">  
-                <div className="skewed-header__bg" style={{backgroundImage: `url("${Global.url}cabecera/get-image/${headerInfo.bg_image}")`}}/>
+                <div className="skewed-header__bg" style={{backgroundImage: `url("https://res.cloudinary.com/djkulk2kk/image/upload/${headerInfo.bg_image}")`}}/>
 
                 <div className="skewed-header__content">
                     <div className="content">

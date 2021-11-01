@@ -6,11 +6,6 @@ import axios from 'axios';
 import Layout from './layout/layout';
 import Global from '../Global';
 
-import horseRiding from '../../static/assets/images/squares/horseRiding-sq.jpg';
-import littleHorse from '../../static/assets/images/squares/littleHorse-sq.jpg';
-import smallHorse from '../../static/assets/images/squares/smallHorse-sq.jpg';
-import teachingHorseRiding from '../../static/assets/images/squares/teachingHorseRiding-sq.jpg';
-
 class App extends Component {
     url = Global.url;
     constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Global from '../../Global';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 
 class ImageSlider extends Component  {
     constructor(props) {
@@ -75,7 +75,9 @@ function mapSliderData(sliderData, imgIndex, type, handleClick) {
                                 }
                                 {
                                     slide.image ? 
-                                        <img className={`slide__${type}image`} src={`${Global.url}caballo/get-image/${slide.image}`} alt={slide.title} /> :
+                                        <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
+                                            <Image className="cab-image" publicId={slide.image} width="800px" height="450px" />
+                                        </CloudinaryContext>  :
                                         <img className={`slide__${type}image`} src={`http://via.placeholder.com/800x480`} alt={slide.title} title="No hay foto para el caballo" />
                                 }
                             </div>

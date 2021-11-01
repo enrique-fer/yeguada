@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Global from '../../Global';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 
 class SquareCard extends Component {
     url = Global.url;
@@ -19,13 +20,15 @@ class SquareCard extends Component {
                     state: {id: card._id}
                  }} className={`${className} square-card`} key={card._id} >
                     <div className="square-card__image">
-                        <p name={card.title} className="anchor-link">
+                        <div name={card.title} className="anchor-link">
                             {
                                 card.image ? 
-                                    <img src={`${this.url}actividad/get-image/${card.image}`} alt={card.title} /> :
+                                    <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
+                                        <Image className="cab-image" publicId={card.image} width="500px" height="500px" />
+                                    </CloudinaryContext> :
                                     <img src={`http://via.placeholder.com/500`} alt={card.title} title="No hay foto para la actividad" />
                             }
-                        </p>
+                        </div>
                     </div>
 
                     <div className="square-card__content">
@@ -66,13 +69,15 @@ class SquareCard extends Component {
                     </div>
 
                     <div className="square-card__image">
-                        <p name={card.title} className="anchor-link">
+                        <div name={card.title} className="anchor-link">
                             {
                                 card.image ? 
-                                    <img src={`${this.url}actividad/get-image/${card.image}`} alt={card.title} /> :
+                                <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
+                                    <Image className="cab-image" publicId={card.image} width="500px" height="500px" />
+                                </CloudinaryContext> :
                                     <img src={`http://via.placeholder.com/500`} alt={card.title} title="No hay foto para el caballo" />
                             }
-                        </p>
+                        </div>
                     </div>
                 </Link>
             )
