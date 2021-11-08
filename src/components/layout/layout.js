@@ -134,7 +134,7 @@ class Layout extends Component {
                 <Home loadHeaderImage={this.loadHeaderImage} />
               </Route>
 
-              <Route path='/auth'>
+              <Route path='/autenticacion'>
                 <Auth
                   loadHeaderImage={this.loadHeaderImage} 
                   handleSuccessfulLogin={this.handleSuccessfulLogin}
