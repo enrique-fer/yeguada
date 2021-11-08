@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Global from '../../Global';
 
 export class Caballo extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor() {
         super();
@@ -17,8 +17,10 @@ export class Caballo extends Component {
                 <div className="caballo__image">
                 {
                     horse.image ? 
-                        <img src={`${Global.url}caballo/get-image/${horse.image}`} alt={horse.title} /> :
-                        <img src={`http://via.placeholder.com/700x466`} alt={horse.title} title="No hay foto para el caballo" />
+                        <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
+                            <Image className="cab-image" publicId={slide.image} width="700px" height="466px" />
+                        </CloudinaryContext>  :
+                        <img className={`slide__${type}image`} src={`http://via.placeholder.com/700x466`} alt={slide.title} title="No hay foto para el caballo" />
                 }
                 </div>
 

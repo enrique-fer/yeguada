@@ -8,7 +8,7 @@ import Features from './features';
 import Global from '../../Global';
 
 class Home extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor(props) {
         super(props);
@@ -24,6 +24,8 @@ class Home extends Component {
             .catch(err => {
                 console.log(err);
             });
+
+        this.props.loadHeaderImage(this.props.navbarLinks, window.location.pathname);
     }
 
     render() {
@@ -53,6 +55,13 @@ class Home extends Component {
     }
 }
 
-Home = connect(null, actions)(Home);
+function mapStateToProps(state) {
+    const { navbarLinks } = state.navbar;
+    return {
+        navbarLinks
+    }
+}
+
+Home = connect(mapStateToProps, actions)(Home);
 
 export default Home;

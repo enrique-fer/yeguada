@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import Navbar from './navbar';
 import PageTitle from './pageTitle';
 import Global from '../../Global';
-import { CloudinaryContext, Image } from 'cloudinary-react';
 
 class SkewedHeader extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor(props) {
         super(props);
@@ -33,7 +32,17 @@ class SkewedHeader extends Component {
                     
                         <PageTitle className="content__title" title={`${headerInfo.title}`} />
                     </div>
-                </div>                
+                </div>            
+
+                {
+                    this.props.isLoggedIn === 'LOGGED_IN' ? (
+                        <div className="skewed-header__logout" onClick={() => this.props.handleLogOut()}>
+                            Cerrar Sesión <i className="fas fa-sign-out-alt"></i>
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }    
             </div>
         );
     }

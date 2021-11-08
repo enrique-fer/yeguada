@@ -8,7 +8,19 @@ import Global from '../../Global';
 import Calendar from 'react-calendar';
 
 class Shop extends Component {
-    url = Global.url;
+    url = Global.dev_url;
+    horas = new Map([
+        ['09:00', 9],
+        ['09:30', 9.5],
+        ['10:00', 10],
+        ['10:30', 10.5],
+        ['11:00', 11],
+        ['11:30', 11.5],
+        ['12:00', 12],
+        ['12:30', 12.5],
+        ['13:00', 13],
+        ['13:30', 13.5]
+    ])
 
     constructor(props) {
         super(props);
@@ -16,11 +28,14 @@ class Shop extends Component {
         this.state = {
             item: {
             },
-            date: new Date(),
+            date: null,
+            start: '',
+            end: ''
         }
 
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
+        this.addHour = this.addHour.bind(this);
     }
 
     componentDidMount() {
@@ -63,7 +78,7 @@ class Shop extends Component {
 
     onChange(value) {
         this.setState({
-            date: value
+            date: value 
         })
     }
 
@@ -71,8 +86,37 @@ class Shop extends Component {
         this.props.addDate(this.state.item.title, this.state.date);
     }
 
+    addHour(value) {
+        var hours = value.split(':');
+        var date = this.state.date;
+        var end = `${parseInt(hours[0], 10) + Math.floor(this.state.item.duration)}`;
+
+        if (this.state.item.duration % 2 != 0) {
+            if (hours[1] === ':30') {
+                end += `:00`;
+            } else {
+                end += `:30`
+            }
+        } else {
+            if (hours[1] === '30') {
+                end += `:30`;
+            } else {
+                end += `:00`
+            }
+        }
+
+        date.setHours(hours[0], hours[1]);
+
+        this.setState({
+            date: date,
+            start: value,
+            end: end
+        })
+    }
+
     render() {
         const d = new Date();
+        const hours = Array.from(this.horas.keys());
         return (
             <div className='shop'>
                 <div className='title'>
@@ -80,40 +124,69 @@ class Shop extends Component {
                 </div>
 
                 <div className="fecha">
-                    <div className='calendario'>
-                        <Calendar
-                            onChange={this.onChange}
-                            minDate={ new Date(d.getFullYear(), d.getMonth(), 1)}
-                            tileClassName={({date}) => {
-                                var clas = "";
-                                var exist = false;
+                    <div className="reserva">
+                        <div className='calendario'>
+                            <Calendar
+                                onChange={this.onChange}
+                                minDate={ new Date(d.getFullYear(), d.getMonth(), 1)}
+                                tileClassName={({date}) => {
+                                    var clas = "";
+                                    var exist = false;
 
-                                this.props.dates.map(actvDate => {
-                                    if (date.getDate() === actvDate.fecha.getDate() &
-                                    (date.getMonth() + 1) === (actvDate.fecha.getMonth() + 1) &
-                                    date.getFullYear() === actvDate.fecha.getFullYear()) {
-                                        exist = true;
+                                    this.props.dates.map(actvDate => {
+                                        if (date.getDate() === actvDate.fecha.getDate() &
+                                        (date.getMonth() + 1) === (actvDate.fecha.getMonth() + 1) &
+                                        date.getFullYear() === actvDate.fecha.getFullYear()) {
+                                            exist = true;
+                                        }
+                                    })
+
+                                    if (exist) {
+                                        clas = "day-red";
+                                    } 
+                                    
+                                    return clas;
+                                }} 
+                                tileDisabled={ ({date, view}) => {
+                                        var dis = false;
+                                        if (view == 'month') {
+                                            if (date.getDate() <= d.getDate() &
+                                            (date.getMonth() +1) <= (d.getMonth() + 1) &
+                                            date.getFullYear() <= d.getFullYear()) {
+                                                dis = true;
+                                            }
+                                        } else {
+                                            if (view == 'year') {
+                                                if ((date.getMonth() +1) < (d.getMonth() + 1) &
+                                                date.getFullYear() <= d.getFullYear()) {
+                                                    dis = true;
+                                                }
+                                            }
+                                        }
+
+
+                                        return dis;
                                     }
-                                })
-
-                                if (exist) {
-                                    clas = "day-red";
-                                } 
-                                
-                                return clas;
-                            }} 
-                            tileDisabled={ ({date, view}) => {
-                                    var dis = false;
-                                    if (date.getDate() <= d.getDate() &
-                                    (date.getMonth() +1) <= (d.getMonth() + 1) &
-                                    date.getFullYear() <= d.getFullYear()) {
-                                        dis = true;
-                                    }
-
-                                    return dis;
                                 }
+                                value={this.state.date} />
+                        </div>
+
+                        <div className="horas">
+                            {
+                                this.state.date ? (
+                                    hours.map((hora, index) => {
+                                        return (
+                                            <div className={
+                                                    this.horas.get(hora) <= this.horas.get(this.state.end) && this.horas.get(hora) >= this.horas.get(this.state.start) ?
+                                                    'hora seleccion' : 'hora'
+                                                } key={index} onClick={() => {this.addHour(hora)}}>
+                                                {hora}
+                                            </div>
+                                        )
+                                    })
+                                ) : ''
                             }
-                            value={this.state.date} />
+                        </div>
                     </div>
 
                     <div className='texto'>

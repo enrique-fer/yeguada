@@ -7,7 +7,7 @@ import Layout from './layout/layout';
 import Global from '../Global';
 
 class App extends Component {
-    url = Global.url;
+    url = Global.dev_url;
     constructor(props) {
         super(props);
     }

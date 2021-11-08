@@ -32,10 +32,6 @@ class Contacto extends Component {
         event.preventDefault();
         const {name, email, message} = this.state;
 
-        console.log("name", name);
-        console.log("email", email);
-        console.log("message", message);
-
         this.setState({
             name: "",
             email: "",
@@ -81,7 +77,8 @@ class Contacto extends Component {
 
                     <form className="form" onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <input 
+                            <input
+                                autocomplete="off" 
                                 type="text" 
                                 id="fullName" 
                                 name="name"
@@ -92,7 +89,8 @@ class Contacto extends Component {
                         </div>
 
                         <div className="form-group">
-                            <input 
+                            <input
+                                autocomplete="off" 
                                 type="email" 
                                 id="email" 
                                 name="email"
