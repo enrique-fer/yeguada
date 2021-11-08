@@ -4,7 +4,7 @@ import Global from '../../Global';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 
 class SquareCard extends Component {
-    url = Global.dev_url;
+    url = Global.url;
 
     constructor() {
         super();

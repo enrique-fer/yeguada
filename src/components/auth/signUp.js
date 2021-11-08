@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import Global from '../../Global';
 
 class SignUp extends Component {
-    url = Global.dev_url;
+    url = Global.url;
     salt = bcrypt.genSaltSync(10);
 
     constructor() {

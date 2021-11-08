@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Global from '../../Global';
 
 export class Caballo extends Component {
-    url = Global.dev_url;
+    url = Global.url;
 
     constructor() {
         super();

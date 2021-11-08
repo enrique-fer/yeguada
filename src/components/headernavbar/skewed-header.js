@@ -5,7 +5,7 @@ import PageTitle from './pageTitle';
 import Global from '../../Global';
 
 class SkewedHeader extends Component {
-    url = Global.dev_url;
+    url = Global.url;
 
     constructor(props) {
         super(props);

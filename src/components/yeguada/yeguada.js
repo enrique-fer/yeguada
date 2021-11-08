@@ -10,7 +10,7 @@ import ImageSlider from './imageSlider';
 import Caballo from './caballo';
 
 class Yeguada extends Component {
-    url = Global.dev_url;
+    url = Global.url;
 
     constructor() {
         super();

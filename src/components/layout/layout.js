@@ -19,7 +19,7 @@ import Global from '../../Global';
 import ErrorPage from '../error';
 
 class Layout extends Component {
-    url = Global.dev_url;
+    url = Global.url;
 
     constructor(props) {
       super(props);

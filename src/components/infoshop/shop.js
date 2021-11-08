@@ -8,7 +8,7 @@ import Global from '../../Global';
 import Calendar from 'react-calendar';
 
 class Shop extends Component {
-    url = Global.dev_url;
+    url = Global.url;
     horas = new Map([
         ['09:00', 9],
         ['09:30', 9.5],
