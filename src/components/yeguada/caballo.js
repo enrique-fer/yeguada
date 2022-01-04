@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
+
+import { CloudinaryContext, Image } from 'cloudinary-react';
 import Global from '../../Global';
 
 export class Caballo extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor() {
         super();
@@ -18,9 +19,9 @@ export class Caballo extends Component {
                 {
                     horse.image ? 
                         <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
-                            <Image className="cab-image" publicId={slide.image} width="700px" height="466px" />
+                            <Image className="cab-image" publicId={horse.image} width="700px" height="466px" />
                         </CloudinaryContext>  :
-                        <img className={`slide__${type}image`} src={`http://via.placeholder.com/700x466`} alt={slide.title} title="No hay foto para el caballo" />
+                        <img src={`https://via.placeholder.com/700x466`} alt={horse.title} title="No hay foto para el caballo" />
                 }
                 </div>
 
@@ -34,7 +35,7 @@ export class Caballo extends Component {
                     </div>
 
                     <div className="color">
-                        <span>Pelaje</span> {horse.info.color}
+                        <span>Capa</span> {horse.info.color}
                     </div>
 
                     <div className="age">

@@ -10,6 +10,6 @@ var router = express.Router();
 router.get('/', auth, UsuarioController.checkAuth);
 router.post('/signin', UsuarioController.signIn);
 router.post('/signup', UsuarioController.signUp);
-
+router.get('/user', UsuarioController.getUser);
 
 module.exports = router;

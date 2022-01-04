@@ -8,7 +8,7 @@ import Global from '../../Global';
 import SquareCard from './squareCard';
 
 class Info extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor(props) {
         super(props);

@@ -3,21 +3,10 @@ import {
     ADD_ACTIVITY_DATE
 } from './types';
 
-export function fetchDates() {
+export function fetchDates(dates) {
     return ({
         type: SET_DATES,
-        payload: [
-            {
-                _id: 0,
-                actividad: "Ruta",
-                fecha: new Date(2021, 11, 12)
-            },
-            {
-                _id: 0,
-                actividad: "Clase",
-                fecha: new Date(2021, 11, 20)
-            }
-        ]
+        payload: dates
     })
 }
 

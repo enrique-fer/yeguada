@@ -8,7 +8,7 @@ import Features from './features';
 import Global from '../../Global';
 
 class Home extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor(props) {
         super(props);

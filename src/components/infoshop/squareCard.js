@@ -4,7 +4,7 @@ import Global from '../../Global';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 
 class SquareCard extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor() {
         super();
@@ -26,7 +26,7 @@ class SquareCard extends Component {
                                     <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
                                         <Image className="cab-image" publicId={card.image} width="500px" height="500px" />
                                     </CloudinaryContext> :
-                                    <img src={`http://via.placeholder.com/500`} alt={card.title} title="No hay foto para la actividad" />
+                                    <img src={`https://via.placeholder.com/500`} alt={card.title} title="No hay foto para la actividad" />
                             }
                         </div>
                     </div>
@@ -75,7 +75,7 @@ class SquareCard extends Component {
                                 <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
                                     <Image className="cab-image" publicId={card.image} width="500px" height="500px" />
                                 </CloudinaryContext> :
-                                    <img src={`http://via.placeholder.com/500`} alt={card.title} title="No hay foto para el caballo" />
+                                    <img src={`https://via.placeholder.com/500`} alt={card.title} title="No hay foto para el caballo" />
                             }
                         </div>
                     </div>

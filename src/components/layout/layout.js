@@ -19,7 +19,7 @@ import Global from '../../Global';
 import ErrorPage from '../error';
 
 class Layout extends Component {
-    url = Global.url;
+    url = Global.dev_url;
 
     constructor(props) {
       super(props);
@@ -151,7 +151,7 @@ class Layout extends Component {
               {
                 this.state.loggedStatus === 'NOT_LOGGED_IN' ? 
                 (
-                  <Redirect from='/reserva' to='/auth' /> 
+                  <Redirect from='/reserva' to='/autenticacion' /> 
                 ) : (
                   this.authorizedPages()
                 )

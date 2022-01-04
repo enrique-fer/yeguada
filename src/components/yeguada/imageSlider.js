@@ -78,7 +78,7 @@ function mapSliderData(sliderData, imgIndex, type, handleClick) {
                                         <CloudinaryContext className='item__foto' cloudName="djkulk2kk">
                                             <Image className="cab-image" publicId={slide.image} width="800px" height="450px" />
                                         </CloudinaryContext>  :
-                                        <img className={`slide__${type}image`} src={`http://via.placeholder.com/800x480`} alt={slide.title} title="No hay foto para el caballo" />
+                                        <img className={`slide__${type}image`} src={`https://via.placeholder.com/800x480`} alt={slide.title} title="No hay foto para el caballo" />
                                 }
                             </div>
                         )

@@ -18,17 +18,17 @@ export default function(state = INITIAL_STATE, action) {
         case ADD_ACTIVITY_DATE:
             var exists = false;
             const newDate = action.payload;
-            var dates = [];
+            var ldates = [];
             state.dates.map(date => {
-                if (date.fecha.getTime() == newDate.date.getTime()){
+                if (date.date.getTime() == newDate.date.getTime()){
                     exists = true;
                 }
 
-                dates.push(date);
+                ldates.push(date);
             })
 
             if (!exists) {
-                dates.push({
+                ldates.push({
                    _id: state.dates.length + 1,
                    actividad: newDate.activity,
                    fecha: newDate.date
@@ -37,7 +37,7 @@ export default function(state = INITIAL_STATE, action) {
 
             return {
                 ...state,
-                dates: dates
+                dates: ldates
             }
         default:
             return state;    

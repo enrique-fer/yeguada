@@ -4,7 +4,7 @@ const services = require('../services');
 
 function isAuth (req, res, next) {
     if (!req.headers.authorization) {
-        return res.status(403).send({
+        return res.status(200).send({
             logged_in: "NOT_LOGGED_IN"
         })
     }

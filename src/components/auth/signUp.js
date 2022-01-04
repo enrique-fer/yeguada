@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import Global from '../../Global';
 
 class SignUp extends Component {
-    url = Global.url;
+    url = Global.dev_url;
     salt = bcrypt.genSaltSync(10);
 
     constructor() {
@@ -59,7 +59,7 @@ class SignUp extends Component {
            this.buildForm()
         ).then(response => {
             if (response.data.logged_in == 'LOGGED_IN') {
-                sessionStorage.setItem("token", reponse.data.token);
+                sessionStorage.setItem("token", response.data.token);
                 this.props.handleSuccessfulAuth();
             } else {
                 this.setState({

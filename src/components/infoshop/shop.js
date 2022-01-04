@@ -8,7 +8,7 @@ import Global from '../../Global';
 import Calendar from 'react-calendar';
 
 class Shop extends Component {
-    url = Global.url;
+    url = Global.dev_url;
     horas = new Map([
         ['09:00', 9],
         ['09:30', 9.5],
@@ -26,11 +26,11 @@ class Shop extends Component {
         super(props);
 
         this.state = {
-            item: {
-            },
+            item: {},
             date: null,
             start: '',
-            end: ''
+            end: '',
+            user: {}
         }
 
         this.onChange = this.onChange.bind(this);
@@ -39,147 +39,279 @@ class Shop extends Component {
     }
 
     componentDidMount() {
-        window.scroll({top: 0});
+        window.scroll({ top: 0 });
+        axios.get(`${this.url}reserva`)
+            .then(
+                response => {
+                    this.props.fetchDates(response.data.reservas);
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+
         if (this.props.featuresCards.length === 0) {
             axios.get(`${this.url}actividad`)
-            .then(res => {
-                var features = res.data.actividades;
-                this.props.setFeaturesCards(features);
+                .then(res => {
+                    var features = res.data.actividades;
+                    this.props.setFeaturesCards(features);
 
-                const { id } = this.props.location.state;
-                const item = features.find(item => item._id === (id ? id : 0));
+                    const { id } = this.props.location.state;
+                    const item = features.find(item => item._id === (id ? id : 0));
 
-                this.props.loadHeaderImage(this.props.headers, window.location.pathname);
-                this.props.fetchDates();
+                    this.props.loadHeaderImage(this.props.headers, window.location.pathname);
 
-                if(item != null) {
-                    this.setState({
-                        item
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
+                    if (item != null) {
+                        this.setState({
+                            item
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         } else {
             const { id } = this.props.location.state;
             const item = this.props.featuresCards.find(item => item._id === (id ? id : 0));
 
             this.props.loadHeaderImage(this.props.headers, window.location.pathname);
-            this.props.fetchDates();
 
-            if(item != null) {
+            if (item != null) {
                 this.setState({
                     item
                 });
             }
         }
+
+        var token = sessionStorage.getItem('token');
+
+        if (token != null) {
+            axios.get(`${this.url}auth/user`, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    this.setState({
+                        user: response.data.user
+                    })
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     }
 
     onChange(value) {
         this.setState({
-            date: value 
+            date: value,
+            start: '',
+            end: ''
         })
+    }
+
+    buildForm() {
+        var formData = new FormData();
+
+        formData.append("activity_id", this.state.item._id);
+        formData.append("date", this.state.date);
+        formData.append("start", this.state.start);
+        formData.append("end", this.state.end);
+        formData.append("user_id", this.state.user._id);
+
+        return formData;
     }
 
     onClick() {
-        this.props.addDate(this.state.item.title, this.state.date);
+        axios.post(`${this.url}reserva/save`, this.buildForm())
+            .then(
+                res => {
+                    this.props.addDate(this.state.item.title, this.state.date);
+                    axios.get(`${this.url}reserva`)
+                        .then(
+                            response => {
+                                alert(`Se ha realizado una reserva para el ${this.state.date.getUTCDate()+1}/${this.state.date.getMonth() + 1}/${this.state.date.getFullYear()}`);
+                                this.props.fetchDates(response.data.reservas);
+                            },
+                            error => {
+                                console.log(error);
+                            }
+                        )
+                },
+                error => {
+                    console.log(error);
+                }
+            )
     }
 
     addHour(value) {
-        var hours = value.split(':');
+        var hoursplit = value.split(':');
         var date = this.state.date;
-        var end = `${parseInt(hours[0], 10) + Math.floor(this.state.item.duration)}`;
+        var end = "";
+        const hours = Array.from(this.horas.keys());
 
-        if (this.state.item.duration % 2 != 0) {
-            if (hours[1] === ':30') {
-                end += `:00`;
+        var dates = [];
+        this.props.dates.forEach(actv => {
+            var actvDate = new Date(actv.date);
+            if (this.state.date.getDate() === actvDate.getDate() &
+                this.state.date.getMonth() === actvDate.getMonth() &
+                this.state.date.getFullYear() === actvDate.getFullYear()) {
+                dates.push(actv)
+            }
+        });
+
+        var resHours = [];
+        if (dates) {
+            hours.forEach(hora => {
+                dates.forEach(date => {
+                    if (this.horas.get(hora) >= this.horas.get(date.start) && this.horas.get(hora) <= this.horas.get(date.end)) {
+                        resHours.push(hora);
+                    }
+                })
+            })
+        }
+
+        if (this.state.item.duration % 1 != 0) {
+            if (hoursplit[1] === '30') {
+                end = `${parseInt(hoursplit[0], 10) + Math.floor(this.state.item.duration) + 1}:00`;
             } else {
-                end += `:30`
+                end = `${parseInt(hoursplit[0], 10) + Math.floor(this.state.item.duration)}:30`;
             }
         } else {
-            if (hours[1] === '30') {
-                end += `:30`;
+            if (hoursplit[1] === '30') {
+                end = `${parseInt(hoursplit[0], 10) + Math.floor(this.state.item.duration)}:30`;
             } else {
-                end += `:00`
+                end = `${parseInt(hoursplit[0], 10) + Math.floor(this.state.item.duration)}:00`;
             }
         }
 
-        date.setHours(hours[0], hours[1]);
+        var fin = false,
+            inic = false;
+        resHours.forEach(resHour => {
+            if (end === resHour) {
+                fin = true;
+            }
 
-        this.setState({
-            date: date,
-            start: value,
-            end: end
-        })
+            if (value === resHour) {
+                inic = true;
+            }
+        });
+
+        if (!fin && !inic) {
+            this.setState({
+                start: value,
+                end: end
+            })
+        } else {
+            this.setState({
+                start: '',
+                end: ''
+            })
+            alert("No se puede reservar para esa hora");
+        }
+    }
+
+    getCalendar() {
+        const d = new Date();
+        
+        return <Calendar
+        onChange={this.onChange}
+        minDate={new Date(d.getFullYear(), d.getMonth(), 1)}
+        tileClassName={({ date }) => {
+            var clas = "";
+            var exist = false;
+
+            this.props.dates.map(actv => {
+                var actvDate = new Date(actv.date);
+                if (date.getDate() === actvDate.getDate() &
+                    date.getMonth() === actvDate.getMonth() &
+                    date.getFullYear() === actvDate.getFullYear()) {
+                    exist = true;
+                }
+            })
+
+            if (exist) {
+                clas = "day-red";
+            }
+
+            return clas;
+        }}
+        tileDisabled={({ date, view }) => {
+            var dis = false;
+            if (view == 'month') {
+                if (date.getDate() <= d.getDate() &
+                    date.getMonth() <= d.getMonth() &
+                    date.getFullYear() <= d.getFullYear()) {
+                    dis = true;
+                }
+            } else {
+                if (view == 'year') {
+                    if ((date.getMonth() + 1) < (d.getMonth() + 1) &
+                        date.getFullYear() <= d.getFullYear()) {
+                        dis = true;
+                    }
+                }
+            }
+
+
+            return dis;
+        }
+        }
+        value={this.state.date} />
     }
 
     render() {
-        const d = new Date();
         const hours = Array.from(this.horas.keys());
         return (
             <div className='shop'>
                 <div className='title'>
-                    Reserva día para { this.state.item.title }
+                    Reserva día para {this.state.item.title}
                 </div>
 
                 <div className="fecha">
                     <div className="reserva">
                         <div className='calendario'>
-                            <Calendar
-                                onChange={this.onChange}
-                                minDate={ new Date(d.getFullYear(), d.getMonth(), 1)}
-                                tileClassName={({date}) => {
-                                    var clas = "";
-                                    var exist = false;
-
-                                    this.props.dates.map(actvDate => {
-                                        if (date.getDate() === actvDate.fecha.getDate() &
-                                        (date.getMonth() + 1) === (actvDate.fecha.getMonth() + 1) &
-                                        date.getFullYear() === actvDate.fecha.getFullYear()) {
-                                            exist = true;
-                                        }
-                                    })
-
-                                    if (exist) {
-                                        clas = "day-red";
-                                    } 
-                                    
-                                    return clas;
-                                }} 
-                                tileDisabled={ ({date, view}) => {
-                                        var dis = false;
-                                        if (view == 'month') {
-                                            if (date.getDate() <= d.getDate() &
-                                            (date.getMonth() +1) <= (d.getMonth() + 1) &
-                                            date.getFullYear() <= d.getFullYear()) {
-                                                dis = true;
-                                            }
-                                        } else {
-                                            if (view == 'year') {
-                                                if ((date.getMonth() +1) < (d.getMonth() + 1) &
-                                                date.getFullYear() <= d.getFullYear()) {
-                                                    dis = true;
-                                                }
-                                            }
-                                        }
-
-
-                                        return dis;
-                                    }
-                                }
-                                value={this.state.date} />
+                            {
+                                this.getCalendar()
+                            }
                         </div>
 
                         <div className="horas">
                             {
                                 this.state.date ? (
                                     hours.map((hora, index) => {
+                                        var dates = [];
+                                        this.props.dates.forEach(actv => {
+                                            var actvDate = new Date(actv.date);
+                                            if (this.state.date.getDate() === actvDate.getDate() &
+                                                this.state.date.getMonth() === actvDate.getMonth() &
+                                                this.state.date.getFullYear() === actvDate.getFullYear()) {
+                                                dates.push(actv)
+                                            }
+                                        });
+
+                                        var className = '';
+                                        if (dates) {
+                                            dates.forEach(date => {
+                                                if (this.horas.get(hora) >= this.horas.get(date.start) && this.horas.get(hora) <= this.horas.get(date.end)) {
+                                                    className = 'res';
+                                                }
+                                            })
+                                        }
+
+                                        if (className === 'res') {
+                                            className += ' hora';
+                                        } else {
+                                            if (this.horas.get(hora) <= this.horas.get(this.state.end) && this.horas.get(hora) >= this.horas.get(this.state.start)) {
+                                                className += 'hora seleccion'
+                                            } else {
+                                                className += 'hora'
+                                            }
+
+                                        }
+
                                         return (
-                                            <div className={
-                                                    this.horas.get(hora) <= this.horas.get(this.state.end) && this.horas.get(hora) >= this.horas.get(this.state.start) ?
-                                                    'hora seleccion' : 'hora'
-                                                } key={index} onClick={() => {this.addHour(hora)}}>
+                                            <div className={className} key={index} onClick={() => { this.addHour(hora) }}>
                                                 {hora}
                                             </div>
                                         )

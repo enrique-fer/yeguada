@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 
 import Navbar from './navbar';
 import logo from '../../../static/assets/images/logos/caballoblanco.png';
@@ -12,9 +13,9 @@ class MainHeader extends Component {
         return (
             <div className="header">
                 <div className="header__left">
-                    <div className="header__logo">
-                        <img src={logo} alt="Mi Logo" />
-                    </div>
+                    <CloudinaryContext className="header__logo" cloudName="djkulk2kk">
+                        <Image publicId="fkjasdFEFsdaf18efsfFDAeTgf" alt="Mi Logo" />
+                    </CloudinaryContext>
                 </div>
 
                 <div className="header__center">
@@ -28,9 +29,9 @@ class MainHeader extends Component {
                 </div>
 
                 <div className="header__right">
-                    <div className="header__logo">
-                        <img src={logo} alt="Mi Logo" />
-                    </div>
+                <CloudinaryContext className="header__logo sLogo" cloudName="djkulk2kk">
+                        <Image publicId="fkjasdFEFsdaf18efsfFDAeTgf" alt="Mi Logo" />
+                    </CloudinaryContext>
                 </div>
             </div>
         );

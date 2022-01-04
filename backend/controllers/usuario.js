@@ -107,7 +107,7 @@ var controller = {
     getUser: (req, res) => {
         let token = req.headers.authorization.split(' ')[1];
 
-        Usuario.find({ token: token }, (err, user) => {
+        Usuario.findOne({ token: token }, (err, user) => {
             if (err) {
                 return res.status(500).send({
                     status: "error",
