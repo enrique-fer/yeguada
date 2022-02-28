@@ -1,41 +1,41 @@
 /*Contact Styles*/
 .page-container {
-    grid-row: content-s/content-e;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  grid-row: content-s/content-e;
 
-    margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 50px;
 }
 .contact-grid-wrapper {
-    width: 1000px;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-gap: 100px;
+  width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 100px;
 }
 
 .company-metadata-sidebar-wrapper > .logo img {
-    width: 100%;
-    margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .company-metadata-sidebar-wrapper > .company-details-wrapper {
-    font-family: 'Ubuntu Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 1.25em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: right;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 1.25em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
 }
 
 .company-metadata-sidebar-wrapper > .company-details-wrapper i {
-    color: #cea135;
+  color: #cea135;
 }
 
 .company-metadata-sidebar-wrapper > .company-details-wrapper div {
-    color: #0b2b07;
+  color: #0b2b07;
 }

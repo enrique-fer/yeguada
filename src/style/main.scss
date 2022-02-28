@@ -1,54 +1,54 @@
 html {
-    width: 100vw;
-    overflow-x: hidden;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 body {
-    font-family: "Open Sans";
-    color: #808080;
+  font-family: "Open Sans";
+  color: #808080;
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: greyscale;
-    text-rendering: optimizeLegibility;
-    -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: greyscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@import './layout.scss';
+@import "./layout.scss";
 
-@import './headernavbar/header.scss';
-@import './headernavbar/menu-nav.scss';
-@import './headernavbar/skewedheader.scss';
-@import './headernavbar/pageTitle.scss';
+@import "./headernavbar/header.scss";
+@import "./headernavbar/menu-nav.scss";
+@import "./headernavbar/skewedheader.scss";
+@import "./headernavbar/pageTitle.scss";
 
-@import './footer/footer.scss';
+@import "./footer/footer.scss";
 
-@import './home/features.scss';
-@import './home/home.scss';
-@import './home/place.scss';
+@import "./home/features.scss";
+@import "./home/home.scss";
+@import "./home/place.scss";
 
-@import './yeguada/yeguada.scss';
-@import './yeguada/caballo.scss';
-@import './yeguada/sliders.scss';
+@import "./yeguada/yeguada.scss";
+@import "./yeguada/caballo.scss";
+@import "./yeguada/sliders.scss";
 
-@import './infoShop/info.scss';
-@import './infoShop/shop.scss';
+@import "./infoShop/info.scss";
+@import "./infoShop/shop.scss";
 
-@import '../../node_modules/react-calendar/dist/Calendar.css';
-@import './infoShop/calendario.scss';
+@import "../../node_modules/react-calendar/dist/Calendar.css";
+@import "./infoShop/calendario.scss";
 
-@import './contacto/contacto.scss';
-@import './contacto/contacto-form.scss';
+@import "./contacto/contacto.scss";
+@import "./contacto/contacto-form.scss";
 
-@import './auth/auth.scss';
-@import './auth/login.scss';
-@import './auth/signUp.scss';
+@import "./auth/auth.scss";
+@import "./auth/login.scss";
+@import "./auth/signUp.scss";
 
-@import './forms/btns.scss';
+@import "./forms/btns.scss";

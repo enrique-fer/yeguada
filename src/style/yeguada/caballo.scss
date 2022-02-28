@@ -1,62 +1,62 @@
 .caballo {
-    display: grid;
-    grid-template-columns: 100px [image-s] 700px [image-e] 50px [info-s] 1fr [info-e] 100px;
-    grid-template-rows: [s] 1fr [m] 50px [e];
+  display: grid;
+  grid-template-columns: 100px [image-s] 700px [image-e] 50px [info-s] 1fr [info-e] 100px;
+  grid-template-rows: [s] 1fr [m] 50px [e];
+  width: 100%;
+
+  &__image {
+    grid-row: s/m;
+    grid-column: image-s/image-e;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
+  &__image img {
     width: 100%;
+  }
 
-    &__image {
-        grid-row: s/m;
-        grid-column: image-s/image-e;
-        
-        display: flex;
-        justify-content: center;
-        align-self: center;
+  &__info {
+    grid-row: s/m;
+    grid-column: info-s/info-e;
+
+    display: grid;
+    grid-auto-rows: 75px;
+    grid-template-columns: 1fr;
+    align-self: center;
+    justify-content: center;
+
+    border-top: 4px solid #cea135;
+    border-bottom: 4px solid #cea135;
+
+    & > * {
+      font-size: 1.5em;
+
+      align-self: center;
+      text-align: left;
+      padding: 15px;
     }
 
-    &__image img {
-        width: 100%;
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
     }
 
-    &__info {
-        grid-row: s/m;
-        grid-column: info-s/info-e;
+    .parents {
+      display: flex;
+      justify-content: flex-start;
 
-        display: grid;
-        grid-auto-rows: 75px;
-        grid-template-columns: 1fr;
-        align-self: center;
-        justify-content: center;
-        
-        border-top: 4px solid #cea135;
-        border-bottom: 4px solid #cea135;
-
-        & > * {
-            font-size: 1.5em;
-           
-            align-self: center;
-            text-align: left;
-            padding: 15px;
-        }
-
-        span {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .parents {
-            display: flex;
-            justify-content: flex-start;
-
-            &__father {
-                transform: translateX(50px);
-            }
-        }
+      &__father {
+        transform: translateX(50px);
+      }
     }
+  }
 
-    &__back {
-        grid-row: m/e;
-        grid-column: image-s/image-e;
+  &__back {
+    grid-row: m/e;
+    grid-column: image-s/image-e;
 
-        font-size: 1.5em;
-    }
+    font-size: 1.5em;
+  }
 }

@@ -1,94 +1,94 @@
 /*Footer Styles*/
 .footer {
-    grid-row: footer-s/footer-e;
-    grid-column: 1/-1;
-    background-color: #0b2b07;
+  grid-row: footer-s/footer-e;
+  grid-column: 1/-1;
+  background-color: #0b2b07;
+  color: #cbcbcb;
+  display: grid;
+  grid-template-columns: [s] 1fr [e];
+  grid-template-rows: [logo-s] 1fr [logo-e contact-s] 1fr [contact-e links-s] 50px [links-e] 30px [social-s] 50px [social-e copy-s] 50px [copy-e];
+  justify-content: center;
+
+  & > * {
+    margin: 0px auto;
+  }
+
+  &__logo {
+    grid-row: logo-s/logo-e;
+    grid-column: s/e;
+  }
+
+  &__phone-days-hours {
+    grid-row: contact-s/contact-e;
+    grid-column: s/e;
+  }
+
+  &__links {
+    grid-row: links-s/links-e;
+    grid-column: s/e;
+  }
+
+  &__social-media {
+    grid-row: social-s/social-e;
+    grid-column: s/e;
+
+    min-width: 120px;
+    width: 35%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__copyright {
+    grid-row: copy-s/copy-e;
+    grid-column: s/e;
+
+    font-size: 0.7em;
+    color: #858585;
+  }
+
+  &__social-media a {
+    font-size: 1.5em;
     color: #cbcbcb;
-    display: grid;
-    grid-template-columns: [s] 1fr [e];
-    grid-template-rows: [logo-s] 1fr [logo-e contact-s] 1fr [contact-e links-s] 50px [links-e] 30px [social-s] 50px [social-e copy-s] 50px [copy-e];
-    justify-content: center;
+    transition: 0.5s all ease-in-out;
+  }
 
-    & > * {
-        margin: 0px auto;
-    }
-
-    &__logo {
-        grid-row: logo-s/logo-e;
-        grid-column: s/e;
-    }
-
-    &__phone-days-hours {
-        grid-row: contact-s/contact-e;
-        grid-column: s/e;
-    }
-
-    &__links{
-        grid-row: links-s/links-e;
-        grid-column: s/e;
-    }
-
-    &__social-media {
-        grid-row: social-s/social-e;
-        grid-column: s/e;
-
-        min-width: 120px;
-        width: 35%;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    &__copyright {
-        grid-row: copy-s/copy-e;
-        grid-column: s/e;
-
-        font-size: 0.7em;
-        color: #858585;
-    }
-
-    &__social-media a {
-        font-size: 1.5em;
-        color: #cbcbcb;
-        transition: 0.5s all ease-in-out;
-    }
-
-    &__social-media a:hover {
-        color: #cea135;
-    }
+  &__social-media a:hover {
+    color: #cea135;
+  }
 }
 
 .contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: [hours-days-s] 1fr [hours-days-e phone-s] 1fr [phone-e];
+  font-weight: bold;
+
+  &__hours-days {
+    grid-row: hours-days-s/hours-days-e;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: [hours-days-s] 1fr [hours-days-e phone-s] 1fr [phone-e];
-    font-weight: bold;
+    grid-template-rows: [s] 1fr [e];
+    grid-template-columns: [hours-s] 1fr [hours-e days-s] 1fr [days-e];
+    grid-column-gap: 20px;
 
-    &__hours-days {
-        grid-row: hours-days-s/hours-days-e;
-        display: grid;
-        grid-template-rows: [s] 1fr [e];
-        grid-template-columns: [hours-s] 1fr [hours-e days-s] 1fr [days-e];
-        grid-column-gap: 20px;
-
-        & > * {
-            color: #cea135;
-        }
-
-        .hours {
-            grid-row: s/e;
-            grid-column: hours-s/hours-e;
-            margin: 0px auto;
-        }
-
-        .days {
-            grid-row: s/e;
-            grid-column: days-s/days-e;
-            margin: 0px auto;
-        }
+    & > * {
+      color: #cea135;
     }
 
-    &__phone {
-        grid-row: phone-s/phone-e;
-        margin: 0px auto;
+    .hours {
+      grid-row: s/e;
+      grid-column: hours-s/hours-e;
+      margin: 0px auto;
     }
+
+    .days {
+      grid-row: s/e;
+      grid-column: days-s/days-e;
+      margin: 0px auto;
+    }
+  }
+
+  &__phone {
+    grid-row: phone-s/phone-e;
+    margin: 0px auto;
+  }
 }

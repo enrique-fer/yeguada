@@ -1,44 +1,44 @@
 .header {
-    grid-row: header-s/header-e;
-    grid-column: s/e;
-    height: 350px;
-    background-color: #0b2b07;
-    display: grid;
-    grid-template-columns: [s] 1fr [sm m] 1fr [me] 1fr [e];
+  grid-row: header-s/header-e;
+  grid-column: s/e;
+  height: 350px;
+  background-color: #0b2b07;
+  display: grid;
+  grid-template-columns: [s] 1fr [sm m] 1fr [me] 1fr [e];
+  align-self: center;
+
+  & > * {
+    grid-row: 1/-1;
+    margin: 0px auto;
     align-self: center;
+  }
 
-    & > * {
-        grid-row: 1/-1;
-        margin: 0px auto;
-        align-self: center;
-    }
+  &__left {
+    grid-column: s/sm;
+    margin: 0px auto;
+    align-self: center;
+  }
 
-    &__left {
-        grid-column: s/sm;
-        margin: 0px auto;
-        align-self: center;
-    }
+  &__center {
+    grid-column: sm/me;
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    grid-gap: 60px;
+    width: 550px;
+  }
 
-    &__center {
-        grid-column: sm/me;
-        display: grid;
-        grid-template-columns: 1fr;
-        text-align: center;
-        grid-gap: 60px;
-        width: 550px;
-    }
-
-    &__right {
-        grid-column: me/e;
-    }
+  &__right {
+    grid-column: me/e;
+  }
 }
 
-.brand-name{
-    font-family: 'Dancing Script', cursive;
-    color: #cbcbcb;
-    font-size: 3em;
+.brand-name {
+  font-family: "Dancing Script", cursive;
+  color: #cbcbcb;
+  font-size: 3em;
 }
 
 .sLogo {
-    transform: scaleX(-1);
+  transform: scaleX(-1);
 }

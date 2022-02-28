@@ -1,15 +1,15 @@
-'use strict'
+"use strict";
 
-var express = require('express');
-var UsuarioController = require('../controllers/usuario');
-const auth = require('../middleware/auth');
+var express = require("express");
+var UsuarioController = require("../controllers/usuario");
+const auth = require("../middleware/auth");
 
 var router = express.Router();
 
 //Rutas
-router.get('/', auth, UsuarioController.checkAuth);
-router.post('/signin', UsuarioController.signIn);
-router.post('/signup', UsuarioController.signUp);
-router.get('/user', UsuarioController.getUser);
+router.get("/", auth, UsuarioController.checkAuth);
+router.post("/signin", UsuarioController.signIn);
+router.post("/signup", UsuarioController.signUp);
+router.get("/user", UsuarioController.getUser);
 
 module.exports = router;

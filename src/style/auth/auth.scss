@@ -1,32 +1,32 @@
 .auth {
-    min-height: 500px;
-    display: grid;
+  min-height: 500px;
+  display: grid;
 
-    &__nav {
-        height: 50px;
+  &__nav {
+    height: 50px;
 
-        display: flex;
-    }
+    display: flex;
+  }
 }
 
 .auth-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    & p {
-        color: #808080;
-        font-size: 2em;
-        font-weight: normal;
-        cursor: pointer;
-    }
+  width: 50%;
+
+  & p {
+    color: #808080;
+    font-size: 2em;
+    font-weight: normal;
+    cursor: pointer;
+  }
 }
 
 .auth-link.active {
-    & p {
-        font-weight: 600;
-        color: #cea135;
-    }
+  & p {
+    font-weight: 600;
+    color: #cea135;
+  }
 }

@@ -1,5 +1,5 @@
 .layout {
-    display: grid;
-    grid-template-rows: [header-s] 350px [header-e content-s] 1fr [content-e footer-s] 510px [footer-e];
-    grid-template-columns: [s] 1fr [e];
+  display: grid;
+  grid-template-rows: [header-s] 350px [header-e content-s] 1fr [content-e footer-s] 510px [footer-e];
+  grid-template-columns: [s] 1fr [e];
 }
